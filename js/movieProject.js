@@ -1,7 +1,9 @@
 "use strict"
 
 
-const movieURL = "https://glitch.com/edit/#!/certain-careful-scent";
+const OmdbAPIurl = "http://www.omdbapi.com/";
+
+const ourMovieDB = "https://glitch.com/edit/#!/certain-careful-scent"
 
 
 
@@ -12,9 +14,14 @@ let options = {
     header: {
         "Content-Type": "application/json",
     },
-    body: JSON.stringify(blogPost)
+    body: JSON.stringify(movieTitle)
 } // the necessary identifying options (the : fax metaphor)
+
+   fetch(ourMovieDB, options).then(function(response) {
+       console.log(response);
+   });
 
   let url = "/posts";
 
-  console.log(blogPost);
+  console.log(movieTitle);
+

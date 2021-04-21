@@ -48,3 +48,50 @@ let omdbApi = fetch("movieAPIToken")
 
 // Notice how this log runs before the we log the results.
 console.log('omdbApi Promise', omdbApi);
+
+
+function renderCoffee(coffee) {
+
+    var html = `<div id="accordion">`;
+    html += `<div className="card">`;
+    html += `<h5 className="mb-0">`;
+    html += `<button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true aria-controls="collapseOne">${movieTitle.title}</button>`;
+    html += `<div className="card-header" id="headingOne">`;
+    html += `</h5>`;
+    html += `</div>`;
+    html += `<div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">`;
+    html += `<div className="card-body">`;
+    html += `<table className="table">`;
+    html += `<thead>`;
+    html += `<tr>`;
+    html += `<th scope="col">Movie Title</th>`;
+    html += `<th scope="col">Movie Rating</th>`;
+    html += `<th scope="col">Release Year</th>`;
+    html += `<th scope="col">Director</th>`;
+    html += `</tr>`;
+    html += `</thead>`;
+    html += `<tbody>`;
+    html += `<tr>`;
+    html += `<th scope="row">${movieTitle.title}</th>`;
+    html += `<td>${movieTitle.title}</td>`;
+    html += `<td>${movieTitle.title}</td>`;
+    html += `<td>${movieTitle.title}</td>`;
+    html += `<td>${movieTitle.title}</td>`;
+    html += `</tr>`;
+    html += `</tbody>`;
+    html += `</table>`;
+    html += `<h3>Id #</h3>`;
+    html += `<p class="product-roast">' + coffee.roast + '</p>`;
+    html += `</div>`;
+    html += `</div>`;
+    html += `</div>`;
+
+    return html;
+}
+                    </tr>
+                    </tbody>
+                </table>
+                <h3>Id #</h3>
+            </div>
+        </div>
+    </div>

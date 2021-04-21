@@ -22,15 +22,6 @@ body {
     color: #f8e2b9;
     }
 
-.cardText{
-    margin-bottom: 40px;
-}
-
-#moviePoster {
-    width:100%; /* you can use % */
-    height: auto;
-}
-
 .fixed-top{
     left: unset !important;
 }
@@ -55,4 +46,14 @@ header.masthead {
 .site-heading {
     padding: 50px 0 550px 0;
     color: white;
+}
+
+/*list properties*/
+.cardText{
+    margin-bottom: 40px;
+}
+
+#moviePoster {
+    width:100%; /* you can use % */
+    height: auto;
 }

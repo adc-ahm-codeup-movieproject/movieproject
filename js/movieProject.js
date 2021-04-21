@@ -63,7 +63,7 @@ function renderFilmCard(film) {
     html += `<div class="card-body">`;
     html += `<div class="row cardText">`;
     html += `<div class="col">`;
-    html += `<img class="col" id="moviePoster" src="${movieTitle.poster}"></div>`;
+    html += `<img class="col" id="moviePoster" src="${movieTitle.poster}" alt="media/missing movie poster.png"></div>`;
     html += `<div class="col-9">`;
     html += `<p>${movieTitle.plot}</p>`;
     html += `<p>${movieTitle.actors}</p>`;

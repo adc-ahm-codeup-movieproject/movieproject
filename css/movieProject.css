@@ -1,0 +1,48 @@
+
+/*// Global styling for this template*/
+body {
+}
+
+.nav-button{
+    color: #38302e;
+    font-size: 40px;
+    line-height: 30px;
+    padding: 10px;
+    margin-top: 40px;
+    margin-bottom: 0;
+    /*font-family: adobe-fan-heiti-std, sans-serif;*/
+    font-weight: normal;
+    text-shadow: 3px -2px 0 #f8e2b9;
+    background-color: rgb(220, 74, 61);
+    border: none;
+    display: inline-block;}
+.nav-button:hover {
+    text-shadow: 3px -2px 0 #38302e;
+    color: #f8e2b9;
+    }
+
+.fixed-top{
+    left: unset !important;
+}
+
+#home-button{
+    border-right: 5px double #f8e2b9;
+}
+/*.nav-button:active {*/
+/*    background: #f8e2b9; }*/
+
+ /*Styling for the masthead*/
+header.masthead {
+    background: no-repeat center center;
+    background-color: lightgrey;
+    background-attachment: scroll;
+    position: relative;
+    background-size: cover;
+}
+
+.page-heading,
+.post-heading,
+.site-heading {
+    padding: 50px 0 550px 0;
+    color: white;
+}

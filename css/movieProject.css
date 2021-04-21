@@ -16,10 +16,20 @@ body {
     background-color: rgb(220, 74, 61);
     border: none;
     display: inline-block;}
+
 .nav-button:hover {
     text-shadow: 3px -2px 0 #38302e;
     color: #f8e2b9;
     }
+
+.cardText{
+    margin-bottom: 40px;
+}
+
+#moviePoster {
+    width:100%; /* you can use % */
+    height: auto;
+}
 
 .fixed-top{
     left: unset !important;

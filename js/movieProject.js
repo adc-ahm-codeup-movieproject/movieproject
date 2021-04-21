@@ -50,7 +50,7 @@ let omdbApi = fetch("movieAPIToken")
 console.log('omdbApi Promise', omdbApi);
 
 
-function renderCoffee(coffee) {
+function renderFilmCard(film) {
 
     var html = `<div id="accordion">`;
     html += `<div className="card">`;
@@ -61,6 +61,14 @@ function renderCoffee(coffee) {
     html += `</div>`;
     html += `<div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">`;
     html += `<div className="card-body">`;
+    html += `<div className="row cardText">`;
+    html += `<div className="col">`;
+    html += `<img className="col" id="moviePoster" src="${movieTitle.poster}"></div>`;
+    html += `<div className="col-9">`;
+    html += `<p>${movieTitle.plot}</p>`;
+    html += `<p>${movieTitle.actors}</p>`;
+    html += `</div>`;
+    html += `</div>`;
     html += `<table className="table">`;
     html += `<thead>`;
     html += `<tr>`;
@@ -83,10 +91,12 @@ function renderCoffee(coffee) {
     html += `</tbody>`;
     html += `</table>`;
     html += `<h2>Id #</h2>`;
-    html += `<p class="product-roast">' + coffee.roast + '</p>`;
     html += `</div>`;
     html += `</div>`;
     html += `</div>`;
 
     return html;
 }
+
+
+

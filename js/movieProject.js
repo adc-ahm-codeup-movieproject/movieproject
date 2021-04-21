@@ -67,6 +67,7 @@ function renderCoffee(coffee) {
     html += `<th scope="col">Movie Title</th>`;
     html += `<th scope="col">Movie Rating</th>`;
     html += `<th scope="col">Release Year</th>`;
+    html += `<th scope="col">Genre</th>`;
     html += `<th scope="col">Director</th>`;
     html += `</tr>`;
     html += `</thead>`;
@@ -74,13 +75,14 @@ function renderCoffee(coffee) {
     html += `<tr>`;
     html += `<th scope="row">${movieTitle.title}</th>`;
     html += `<td>${movieTitle.title}</td>`;
-    html += `<td>${movieTitle.title}</td>`;
-    html += `<td>${movieTitle.title}</td>`;
-    html += `<td>${movieTitle.title}</td>`;
+    html += `<td>${movieTitle.rating}</td>`;
+    html += `<td>${movieTitle.year}</td>`;
+    html += `<td>${movieTitle.genre}</td>`;
+    html += `<td>${movieTitle.director}</td>`;
     html += `</tr>`;
     html += `</tbody>`;
     html += `</table>`;
-    html += `<h3>Id #</h3>`;
+    html += `<h2>Id #</h2>`;
     html += `<p class="product-roast">' + coffee.roast + '</p>`;
     html += `</div>`;
     html += `</div>`;
@@ -88,10 +90,3 @@ function renderCoffee(coffee) {
 
     return html;
 }
-                    </tr>
-                    </tbody>
-                </table>
-                <h3>Id #</h3>
-            </div>
-        </div>
-    </div>

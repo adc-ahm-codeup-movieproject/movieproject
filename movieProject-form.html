@@ -3,51 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/movieProject.css">
+    <link rel="stylesheet" href="css/mobileSelect.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="sass source/stylesheets/index.scss build/stylesheets/index.css">
-    <title>Title</title>
+    <title>Films We Love</title>
 </head>
 <body>
-<script src="js/movieProject.js" rel="script"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!--NavBar-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-md-auto">
-                <li class="nav-item"><button class="nav-button" id="home-button" href="movieProject.html">OUR LIST</button></li>
-                <li class="nav-item"><button class="nav-button" href="about.html">REFINE OUR LIST</button></li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-md-auto">
+                    <li class="nav-item"><button class="nav-button" id="home-button" href="movieProject.html">OUR LIST</button></li>
+                    <li class="nav-item"><button class="nav-button" href="about.html">REFINE OUR LIST</button></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
+
 <!-- Page Header-->
-<header class="masthead" style="background-image: url('media/filmBanner.png')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-heading">
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        <a href="#!"></a>
-                    </span>
+
+
+    <header class="masthead" style="background-image: url('media/filmBanner.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            <a href="#!"></a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
+    </header>
+
+
+<!--form for entering new movies-->
+
+    <div class="card formBody">
+    <form class="needs-validation" novalidate>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Movie Title</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Movie Title"  required>
+                <div class="valid-feedback">
+                    I love that Movie!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom02">Release Year</label>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="Release Year"  required>
+                <div class="valid-feedback">
+                    You have a great memory!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustomUsername">Director</label>
+                <input type="text" class="form-control" id="validationCustomUsername" placeholder="Director" required>
+                <div class="invalid-feedback">
+                    We need this to be complete please look up the Director.
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="genreSelect">Movie's Genre</label>
+                <select multiple class="form-control" id="genreSelect">
+                    <option>Action</option>
+                    <option>Adventure</option>
+                    <option>Comedy</option>
+                    <option>Crime/Mystery</option>
+                    <option>Fantasy</option>
+                    <option>Horror</option>
+                    <option>Romance</option>
+                    <option>Sci-Fi</option>
+                    <option>Thriller</option>
+                    <option>Western</option>
+                </select>
+            </div>
+            <div class="col-6 ">
+                <label for="datepicker">Movie Release Year</label>
+                <input type="text" id="datepicker" />
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom05">Zip</label>
+                <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Give a description of the plot. <br> You do a good job and we will hire you to write the Reboot next year!</label>
+                <textarea class="form-control col-12" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    Are you sure this a favorite movie, because we only want the very best on this list
+                </label>
+                <div class="invalid-feedback">
+                    Don't think about submiting a bad Movie, only greatness here!
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
     </div>
-</header>
-<!--accordion cards list will appear below here-->
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/keys.js" rel="script"></script>
+<script src="js/movieProject.js" rel="script"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 
 </body>
 </html>

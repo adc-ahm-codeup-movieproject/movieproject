@@ -48,6 +48,11 @@ header.masthead {
     color: white;
 }
 
+.formBody{
+    padding: 10px;
+    margin: 40px;
+}
+
 /*list properties*/
 .cardText{
     margin-bottom: 40px;

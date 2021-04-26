@@ -3,35 +3,30 @@
 
 const ourMovieDB = "https://certain-careful-scent.glitch.me/movies"
 
-const omdbUrl = " http://www.omdbapi.com/?"
+const omdbUrl = " http://www.omdbapi.com/?apikey="
 
-let movieTitle = {
-    title: "Hello",
-    rating: "5",
-    poster: "",
-    year: "2002",
-    genre: "Action, Horror, Sci-Fi",
-    director: "Paul W.S. Anderson",
-    plot: "A special military unit fights a powerful, out-of-control supercomputer and hundreds of scientists who have mutated into flesh-eating creatures after a laboratory accident.",
-    actors: "Ryan McCluskey, Oscar Pearce, Indra Ové, Anna Bolt"} ;
+let moviesList = document.querySelector('#movies');
 
-let movieDbOptions = {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(movieTitle)
-}
+let moviesFinal = [];
 
-   fetch(ourMovieDB, movieDbOptions).then(function(response) {
-       console.log(response);
-       console.log(movieDbOptions)
-       console.log(movieTitle)
-   });
+
+// let movieDbOptions = {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(movieTitle)
+// }
+//
+//    fetch(ourMovieDB, movieDbOptions).then(function(response) {
+//        console.log(response);
+//        console.log(movieDbOptions)
+//        console.log(movieTitle)
+//    });
 
   // let url = "/posts";
 
-let omdbApi = fetch(movieAPIToken)
+let omdbApi = fetch(omdbUrl+movieAPIToken)
     //  Parse the response into json
     .then((response)=>{return response.json()})
     // access the results property from the json Object
@@ -47,10 +42,72 @@ let omdbApi = fetch(movieAPIToken)
     .catch(error => console.log('Error getting films.', error));
 
 // Notice how this log runs before the we log the results.
-console.log('omdbApi Promise', omdbApi);
+// console.log('omdbApi Promise', omdbApi);
 
 
-function renderFilmCard(film) {
+
+// $("#datepicker").datepicker({
+//     format: " yyyy",
+//     viewMode: " years",
+//     minViewMode: " years"
+// });
+
+//Below: Scraping OMDB for values on the AFI 100 Movies Array
+
+
+let afiTopStr = "12 Angry Men,2001: A Space Odyssey,A Clockwork Orange,A Night At The Opera";
+
+
+// // All The President's Men,American Graffiti,Annie Hall,Apocalypse Now,Ben-Hur,Blade Runner,Bonnie And Clyde,Bringing Up Baby,Butch Cassidy And The Sundance Kid,Cabaret,Casablanca,Chinatown,Citizen Kane,City Lights,Do The Right Thing,Double Indemnity,Dr. Strangelove,Duck Soup,E.T,Easy Rider,Forrest Gump,Gone With The Wind,Goodfellas,High Noon,In The Heat Of The Night,Intolerance,It Happened One Night,It'S A Wonderful Life,Jaws,King Kong,Lawrence Of Arabia,M*A*S*H,Midnight Cowboy,Modern Times,Mr. Smith Goes to Washington,Nashville,Network,North By Northwest,On The Waterfront,One Flew Over The Cuckoo's Nest,Platoon,Psycho,Pulp Fiction,Raging Bull,Raiders Of The Lost Ark,Rear Window,Rocky,Saving Private Ryan,Schindler's List,Shane,Singin' In The Rain,Snow White And The Seven Dwarfs,Some Like It Hot,Sophie'S Choice,Spartacus,Star Wars,Sullivan's Travels,Sunrise,Sunset Blvd,Swing Time,Taxi Driver,The African Queen,The Apartment,The Best Years Of Our Lives,The Bridge On The River Kwai,The Deer Hunter,The French Connection,The General,The Godfather,The Godfather Part Ii,The Gold Rush,The Graduate,The Grapes Of Wrath,The Last Picture Show,The Lord Of The Rings: The Fellowship Of The Ring,The Maltese Falcon,The Philadelphia Story,The Searchers,The Shawshank Redemption,The Silence Of The Lambs,The Sixth Sense,The Sound Of Music,The Treasure Of The Sierra Madre,The Wild Bunch,The Wizard Of Oz,Titanic,To Kill A Mockingbird,Tootsie,Toy Story,Unforgiven,Vertigo,West Side Story,Who's Afraid Of Virginia Woolf?,Yankee Doodle Dandy,A Streetcar Named Desire,All About Eve,All The President's Men,American Graffiti,Annie Hall,Apocalypse Now,Ben-Hur,Blade Runner,Bonnie And Clyde,Bringing Up Baby,Butch Cassidy And The Sundance Kid,Cabaret,Casablanca,Chinatown,Citizen Kane,City Lights,Do The Right Thing,Double Indemnity,Dr. Strangelove,Duck Soup,E.T,Easy Rider,Forrest Gump,Gone With The Wind,Goodfellas,High Noon,In The Heat Of The Night,Intolerance,It Happened One Night,It'S A Wonderful Life,Jaws,King Kong,Lawrence Of Arabia,M*A*S*H,Midnight Cowboy,Modern Times,Mr. Smith Goes to Washington,Nashville,Network,North By Northwest,On The Waterfront,One Flew Over The Cuckoo's Nest,Platoon,Psycho,Pulp Fiction,Raging Bull,Raiders Of The Lost Ark,Rear Window,Rocky,Saving Private Ryan,Schindler's List,Shane,Singin' In The Rain,Snow White And The Seven Dwarfs,Some Like It Hot,Sophie'S Choice,Spartacus,Star Wars,Sullivan's Travels,Sunrise,Sunset Blvd,Swing Time,Taxi Driver,The African Queen,The Apartment,The Best Years Of Our Lives,The Bridge On The River Kwai,The Deer Hunter,The French Connection,The General,The Godfather,The Godfather Part Ii,The Gold Rush,The Graduate,The Grapes Of Wrath,The Last Picture Show,The Lord Of The Rings: The Fellowship Of The Ring,The Maltese Falcon,The Philadelphia Story,The Searchers,The Shawshank Redemption,The Silence Of The Lambs,The Sixth Sense,The Sound Of Music,The Treasure Of The Sierra Madre,The Wild Bunch,The Wizard Of Oz,Titanic,To Kill A Mockingbird,Tootsie,Toy Story,Unforgiven,Vertigo,West Side Story,Who's Afraid Of Virginia Woolf?,Yankee Doodle Dandy
+
+let afiTopArr = [];
+
+afiTopArr = afiTopStr.split(",");
+console.log(afiTopArr);
+
+
+afiTopArr.forEach(function (movie){
+    fetch(omdbUrl + movieAPIToken + "&t=" + movie).then(function (response){
+        response.json().then(function (response){
+            console.log("movie response", response);
+            console.log(response.Director);
+            movieScrapper(response);
+        })
+    })
+});
+
+let movieScrapper = function(movie){
+    let addTitle = inputTitle.value.toString();
+    let addRating = inputRating.value.toString();
+    let addPoster = inputPoster.value.toString();
+    let addYear = inputYear.value.toString();
+    let addGenre = inputGenre.value.toString();
+    let addDirector = inputDirector.value.toString();
+    let addPlot = inputPlot.value.toString();
+    let addActors = inputActors.value.toString();
+    movie = {Title: addTitle, Rating: addRating, Poster: addPoster,
+        Year: addYear, Genre: addGenre, Director: addDirector,
+        Plot: addPlot, Actors: addActors};
+    // movies.push(movie);
+    // console.log(movies);
+    // movieList.innerHTML = renderCoffees(movies);
+};
+
+
+// let movieTitle = {
+//     title: "Hello",
+//     rating: "5",
+//     poster: "",
+//     year: "2002",
+//     genre: "Action, Horror, Sci-Fi",
+//     director: "Paul W.S. Anderson",
+//     plot: "A special military unit fights a powerful, out-of-control supercomputer and hundreds of scientists who have mutated into flesh-eating creatures after a laboratory accident.",
+//     actors: "Ryan McCluskey, Oscar Pearce, Indra Ové, Anna Bolt"} ;
+
+function renderMovies(movieTitle) {
+    console.log(movieTitle);
+    const section = document.createElement('section');
+    main.appendChild(section);
 
     var html = `<div id="accordion">`;
     html += `<div class="card">`;
@@ -98,27 +155,4 @@ function renderFilmCard(film) {
     return html;
 }
 
-$("#datepicker").datepicker({
-    format: " yyyy",
-    viewMode: " years",
-    minViewMode: " years"
-});
-
-//Below: Scraping OMDB for values on the AFI 100 Movies Array
-
-
-let afiTopStr = "12 Angry Men,2001: A Space Odyssey,A Clockwork Orange,A Night At The Opera,A Streetcar Named Desire,All About Eve,All The President's Men,American Graffiti,Annie Hall,Apocalypse Now,Ben-Hur,Blade Runner,Bonnie And Clyde,Bringing Up Baby,Butch Cassidy And The Sundance Kid,Cabaret,Casablanca,Chinatown,Citizen Kane,City Lights,Do The Right Thing,Double Indemnity,Dr. Strangelove,Duck Soup,E.T,Easy Rider,Forrest Gump,Gone With The Wind,Goodfellas,High Noon,In The Heat Of The Night,Intolerance,It Happened One Night,It'S A Wonderful Life,Jaws,King Kong,Lawrence Of Arabia,M*A*S*H,Midnight Cowboy,Modern Times,Mr. Smith Goes to Washington,Nashville,Network,North By Northwest,On The Waterfront,One Flew Over The Cuckoo's Nest,Platoon,Psycho,Pulp Fiction,Raging Bull,Raiders Of The Lost Ark,Rear Window,Rocky,Saving Private Ryan,Schindler's List,Shane,Singin' In The Rain,Snow White And The Seven Dwarfs,Some Like It Hot,Sophie'S Choice,Spartacus,Star Wars,Sullivan's Travels,Sunrise,Sunset Blvd,Swing Time,Taxi Driver,The African Queen,The Apartment,The Best Years Of Our Lives,The Bridge On The River Kwai,The Deer Hunter,The French Connection,The General,The Godfather,The Godfather Part Ii,The Gold Rush,The Graduate,The Grapes Of Wrath,The Last Picture Show,The Lord Of The Rings: The Fellowship Of The Ring,The Maltese Falcon,The Philadelphia Story,The Searchers,The Shawshank Redemption,The Silence Of The Lambs,The Sixth Sense,The Sound Of Music,The Treasure Of The Sierra Madre,The Wild Bunch,The Wizard Of Oz,Titanic,To Kill A Mockingbird,Tootsie,Toy Story,Unforgiven,Vertigo,West Side Story,Who's Afraid Of Virginia Woolf?,Yankee Doodle Dandy";
-
-let afiTopArr = [];
-
-afiTopArr = afiTopStr.split(",");
-
-afiTopArr.forEach(function (movie){
-
-        $.getJSON(omdbUrl + omdbApi + "&t=" + movie.split(" ").join("+")).then(function (response){
-        var moviePosterURL = response.Poster;
-
-        if (moviePoster !== "N/A"){
-            console.log($('#moviePoster').attr('src', moviePosterURL));
-        }})
-});
+moviesList.innerHTML = renderMovies(moviesFinal);

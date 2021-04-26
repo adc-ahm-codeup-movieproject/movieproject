@@ -1,4 +1,4 @@
-const movieAPIToken = "apikey=749f871"
+const movieAPIToken = "749f871"
 
 
 // {"Title":"Guardians of the Galaxy Vol. 2",

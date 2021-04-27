@@ -7,8 +7,6 @@ const omdbUrl = " http://www.omdbapi.com/?apikey="
 
 let moviesList = document.querySelector('#movies');
 
-let moviesFinal = [];
-
 
 // let movieDbOptions = {
 //     method: "POST",
@@ -26,20 +24,20 @@ let moviesFinal = [];
 
   // let url = "/posts";
 
-let omdbApi = fetch(omdbUrl+movieAPIToken)
-    //  Parse the response into json
-    .then((response)=>{return response.json()})
-    // access the results property from the json Object
-    .then((jsonData)=>{
-        console.log(jsonData);
-        return jsonData.results;
-    })
-    // iterate over the results array, and access poster url of each film
-    .then((results)=>{
-        results.forEach((s)=>console.log(`${s.poster}`))
-    })
-    // This runs if my fetch request fails. Try changing films to xfilms in the url and look at the error that gets passed. It isn't what you think it would be.
-    .catch(error => console.log('Error getting films.', error));
+// let omdbApi = fetch(omdbUrl+movieAPIToken)
+//     //  Parse the response into json
+//     .then((response)=>{return response.json()})
+//     // access the results property from the json Object
+//     .then((jsonData)=>{
+//         console.log(jsonData);
+//         return jsonData.results;
+//     })
+//     // iterate over the results array, and access poster url of each film
+//     .then((results)=>{
+//         results.forEach((s)=>console.log(`${s.poster}`))
+//     })
+//     // This runs if my fetch request fails. Try changing films to xfilms in the url and look at the error that gets passed. It isn't what you think it would be.
+//     .catch(error => console.log('Error getting films.', error));
 
 // Notice how this log runs before the we log the results.
 // console.log('omdbApi Promise', omdbApi);
@@ -69,30 +67,44 @@ console.log(afiTopArr);
 afiTopArr.forEach(function (movie){
     fetch(omdbUrl + movieAPIToken + "&t=" + movie).then(function (response){
         response.json().then(function (response){
-            console.log("movie response", response);
-            console.log(response.Director);
+
+            // console.log("movie response", response);
+            // console.log();
             movieScrapper(response);
+
         })
     })
 });
 
+const movies = [];
 let movieScrapper = function(movie){
-    let addTitle = inputTitle.value.toString();
-    let addRating = inputRating.value.toString();
-    let addPoster = inputPoster.value.toString();
-    let addYear = inputYear.value.toString();
-    let addGenre = inputGenre.value.toString();
-    let addDirector = inputDirector.value.toString();
-    let addPlot = inputPlot.value.toString();
-    let addActors = inputActors.value.toString();
-    movie = {Title: addTitle, Rating: addRating, Poster: addPoster,
-        Year: addYear, Genre: addGenre, Director: addDirector,
-        Plot: addPlot, Actors: addActors};
-    // movies.push(movie);
-    // console.log(movies);
+    let addTitle = movie.Title.toString();
+    let addRatings = movie.Ratings.reduce(function (acc, curVal) {return `${acc} ${curVal.Source} : ${curVal.Value},`}, '');
+    let addPoster = movie.Poster.toString();
+    let addYear = movie.Year.toString();
+    let addGenre = movie.Genre.toString();
+    let addDirector = movie.Director.toString();
+    let addPlot = movie.Plot.toString();
+    let addActors = movie.Actors.toString();
+    let singleTitle =
+        {
+            Title: addTitle,
+            Rating: {addRatings},
+            Poster: addPoster,
+            Year: addYear,
+            Genre: addGenre,
+            Director: [addDirector],
+            Plot: addPlot,
+            Actors: [addActors]
+        };
+
+    movies.push(singleTitle);
+
+
     // movieList.innerHTML = renderCoffees(movies);
 };
 
+console.log(movies);
 
 // let movieTitle = {
 //     title: "Hello",
@@ -104,55 +116,55 @@ let movieScrapper = function(movie){
 //     plot: "A special military unit fights a powerful, out-of-control supercomputer and hundreds of scientists who have mutated into flesh-eating creatures after a laboratory accident.",
 //     actors: "Ryan McCluskey, Oscar Pearce, Indra Ové, Anna Bolt"} ;
 
-function renderMovies(movieTitle) {
-    console.log(movieTitle);
-    const section = document.createElement('section');
-    main.appendChild(section);
+// function renderMovies(movieTitle) {
+//     console.log(movieTitle);
+//     const section = document.createElement('section');
+//     main.appendChild(section);
+//
+//     var html = `<div id="accordion">`;
+//     html += `<div class="card">`;
+//     html += `<h5 class="mb-0">`;
+//     html += `<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true aria-controls="collapseOne">${movieTitle.title}</button>`;
+//     html += `<div class="card-header" id="headingOne">`;
+//     html += `</h5>`;
+//     html += `</div>`;
+//     html += `<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">`;
+//     html += `<div class="card-body">`;
+//     html += `<div class="row cardText">`;
+//     html += `<div class="col">`;
+//     html += `<img class="col" id="moviePoster" src="${movieTitle.poster}" alt="media/missing movie poster.png"></div>`;
+//     html += `<div class="col-9">`;
+//     html += `<p>${movieTitle.plot}</p>`;
+//     html += `<p>${movieTitle.actors}</p>`;
+//     html += `</div>`;
+//     html += `</div>`;
+//     html += `<table class="table">`;
+//     html += `<thead>`;
+//     html += `<tr>`;
+//     html += `<th scope="col">Movie Title</th>`;
+//     html += `<th scope="col">Movie Rating</th>`;
+//     html += `<th scope="col">Release Year</th>`;
+//     html += `<th scope="col">Genre</th>`;
+//     html += `<th scope="col">Director</th>`;
+//     html += `</tr>`;
+//     html += `</thead>`;
+//     html += `<tbody>`;
+//     html += `<tr>`;
+//     html += `<th scope="row">${movieTitle.title}</th>`;
+//     html += `<td>${movieTitle.title}</td>`;
+//     html += `<td>${movieTitle.rating}</td>`;
+//     html += `<td>${movieTitle.year}</td>`;
+//     html += `<td>${movieTitle.genre}</td>`;
+//     html += `<td>${movieTitle.director}</td>`;
+//     html += `</tr>`;
+//     html += `</tbody>`;
+//     html += `</table>`;
+//     html += `<h2>Id #</h2>`;
+//     html += `</div>`;
+//     html += `</div>`;
+//     html += `</div>`;
+//
+//     return html;
+// }
 
-    var html = `<div id="accordion">`;
-    html += `<div class="card">`;
-    html += `<h5 class="mb-0">`;
-    html += `<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true aria-controls="collapseOne">${movieTitle.title}</button>`;
-    html += `<div class="card-header" id="headingOne">`;
-    html += `</h5>`;
-    html += `</div>`;
-    html += `<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">`;
-    html += `<div class="card-body">`;
-    html += `<div class="row cardText">`;
-    html += `<div class="col">`;
-    html += `<img class="col" id="moviePoster" src="${movieTitle.poster}" alt="media/missing movie poster.png"></div>`;
-    html += `<div class="col-9">`;
-    html += `<p>${movieTitle.plot}</p>`;
-    html += `<p>${movieTitle.actors}</p>`;
-    html += `</div>`;
-    html += `</div>`;
-    html += `<table class="table">`;
-    html += `<thead>`;
-    html += `<tr>`;
-    html += `<th scope="col">Movie Title</th>`;
-    html += `<th scope="col">Movie Rating</th>`;
-    html += `<th scope="col">Release Year</th>`;
-    html += `<th scope="col">Genre</th>`;
-    html += `<th scope="col">Director</th>`;
-    html += `</tr>`;
-    html += `</thead>`;
-    html += `<tbody>`;
-    html += `<tr>`;
-    html += `<th scope="row">${movieTitle.title}</th>`;
-    html += `<td>${movieTitle.title}</td>`;
-    html += `<td>${movieTitle.rating}</td>`;
-    html += `<td>${movieTitle.year}</td>`;
-    html += `<td>${movieTitle.genre}</td>`;
-    html += `<td>${movieTitle.director}</td>`;
-    html += `</tr>`;
-    html += `</tbody>`;
-    html += `</table>`;
-    html += `<h2>Id #</h2>`;
-    html += `</div>`;
-    html += `</div>`;
-    html += `</div>`;
-
-    return html;
-}
-
-moviesList.innerHTML = renderMovies(moviesFinal);
+// moviesList.innerHTML = renderMovies(moviesFinal);
